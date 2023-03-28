@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -10,8 +9,8 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) throws Exception {
         // Fazer uma conexão HTTP e buscar os top 250 filmes
-        // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularMovies.json";
+        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
+        // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/MostPopularMovies.json";
         URI uri = URI.create(url);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
@@ -25,9 +24,17 @@ public class Main {
 
         // Exibir e manipular os dados
         for (Map<String, String> movie : moviesList) {
-            System.out.println(movie.get("title"));
-            System.out.println(movie.get("image"));
-            System.out.println(movie.get("imDbRating"));
+            System.out.println("Título: " + "\u001b[1m" + movie.get("title") + "\u001b[m");
+            System.out.println("Poster: " + "\u001b[1m" + movie.get("image") + "\u001b[m");
+            System.out.println("\u001b[30;1m\u001b[45;1mClassificação: " + movie.get("imDbRating") + "\u001b[m");
+            String starEmoji = "\uD83C\uDF1F";
+            double movieRating = Double.parseDouble(movie.get("imDbRating"));
+            int movieRatingInt = (int) movieRating;
+            String stars = "";
+            for (int i = 0; i < movieRatingInt; i++) {
+                stars += starEmoji;
+            }
+            System.out.println(stars);
         }
     }
 }

@@ -10,6 +10,6 @@ Esse projeto foi criado para treinar mais sobre a linguagem Java, porém utiliza
 
 ## Exemplos
 
-![Java](./assets/images/Java.png)
-![JavaScript](./assets/images/JavaScript.png)
-![Python](./assets/images/Python.png)
+<img src="./assets/images/Java.png" alt="Java Sticker" width="200" height="250">
+<img src="./assets/images/JavaScript.png" alt="JavaScript Sticker" width="200" height="250">
+<img src="./assets/images/Python.png" alt="Python Sticker" width="200" height="250">

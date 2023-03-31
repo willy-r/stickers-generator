@@ -1,15 +1,18 @@
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/NASA-APOD-JamesWebbSpaceTelescope.json";
+        // String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/NASA-APOD-JamesWebbSpaceTelescope.json";
+        String url = "http://localhost:8080/api/languages";
 
         HTTPClient client = new HTTPClient();
         String jsonData = client.getData(url);
 
-        NASAContentExtractor extractor = new NASAContentExtractor();
+        ProgrammingLanguagesContentExtractor extractor = new ProgrammingLanguagesContentExtractor();
         List<Content> contentList = extractor.extract(jsonData);
 
         var stickersGenerator = new StickersGenerator();
@@ -24,8 +27,17 @@ public class Main {
 
             InputStream inputStream = new URL(contentImageUrl).openStream();
             String destFileName = contentTitle.replace(" ", "_") + ".png";
+            String phrase;
 
-            stickersGenerator.generate(inputStream, destFileName);
+            if (contentTitle.equals("Java")) {
+                phrase = "DESGRAÇA!";
+            } else {
+                List<String> phrasesList = Arrays.asList("TOPZERA!", "QUE DAORA!", "CONTROLLAH");
+                Random rand = new Random();
+                phrase = phrasesList.get(rand.nextInt(phrasesList.size()));
+            }
+
+            stickersGenerator.generate(inputStream, destFileName, phrase);
         }
     }
 }

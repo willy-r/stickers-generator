@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class StickersGenerator {
-    public void generate(InputStream inputStream, String destFileName) throws Exception {
+    public void generate(InputStream inputStream, String destFileName, String phrase) throws Exception {
         BufferedImage image = ImageIO.read(inputStream);
 
         int width = image.getWidth();
@@ -25,12 +25,9 @@ public class StickersGenerator {
         graphics.setColor(Color.YELLOW);
         graphics.setFont(font);
 
-        List<String> phrasesList = Arrays.asList("TOPZERA!", "QUE DAORA!", "CONTROLLAH");
-        Random rand = new Random();
-        String randomPhrase = phrasesList.get(rand.nextInt(phrasesList.size()));
         int x = 0;
         int y = (newHeight - plusHeight / 2) + fontSize / 2;
-        graphics.drawString(randomPhrase, x, y);
+        graphics.drawString(phrase, x, y);
 
         String destDirName = "stickers";
         String finalDestName = destDirName + File.separator + destFileName;
